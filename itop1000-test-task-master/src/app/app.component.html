@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <h2 class="text-center">Test Task</h2>
+  <div class="row mt-5">
+    <div class="col-6">
+
+      <!-- Working area -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text"
+                formControlName="name"
+                class="form-control"
+                placeholder="Name"
+                id="name"
+                [ngClass]="{'is-invalid': form.get('name').invalid && form.get('name').touched,
+                            'is-valid':!form.get('name').invalid && form.get('name').touched}">
+          <div class="invalid-feedback" *ngIf = "form.get('name').invalid && form.get('name').touched">
+              <span *ngIf="form.get('name').errors['required']">Name cannot be empty</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <app-custom-input formControlName="customField" [myForm]="form"></app-custom-input>
+        </div>
+        <button class="btn btn-primary" [disabled]="this.form.invalid || isDisabled" type="submit">Submit</button>
+      </form>
+      <!-- End Working area -->
+
+    </div>
+    <div class="col-6">
+      Form value: {{ this.form.value | json }}
+      <hr>
+      <h3>Tasks</h3>
+      <ol>
+        <li>If you open the console, there is an error. Why?</li>
+        <li>Solve the issue.</li>
+        <li>Prevent form to be submitted if is invalid.</li>
+        <li>On form submit add delay 500ms with RxJS</li>
+        <li>Add errors, placeholders and labels to the inputs.</li>
+        <li>app-custom-input must take an [input] and send an (output).</li>
+      </ol>
+
+      <h3>Notes</h3>
+
+      <ul>
+        <li>
+          The [app-custom-input] component must look like this: <img src="/assets/custom-input.png" loading="lazy" width="300">
+        </li>
+        <li>If you have any ideas about how to improve the performance, let us know.</li>
+        <li>Feel free to add any comments for us to better understand your decisions.</li>
+        <li>Good luck!</li>
+        <li>
+          P.S. You don't have to <strong>comment or remove</strong> something in order to solve the above issue ;)
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

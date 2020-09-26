@@ -1,0 +1,20 @@
+<p>custom-input works!</p>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="custom-input">@</span>
+  </div>
+  <input type="text"
+        placeholder="custom-input"
+        (input)="onInput($event.target.value)"
+        (blur)="onTouched($event)"
+        class="form-control"
+        placeholder="custom-input"
+        [ngClass]="{'is-invalid': this.myForm.controls.customField.invalid && this.myForm.controls.customField.touched,
+                    'is-valid': this.myForm.controls.customField.valid && this.myForm.controls.customField.touched}">
+  <div class="invalid-feedback" *ngIf = "this.myForm.controls.customField.invalid && this.myForm.controls.customField.touched">
+      <span *ngIf="this.myForm.controls.customField.errors['required']">CustomField cannot be empty</span>
+  </div>
+</div>
+
+
